@@ -1,50 +1,59 @@
-🛒 Zepto E-commerce SQL Data Analyst Portfolio Project
+# 🛒 **Zepto E-commerce SQL Data Analyst Portfolio Project**
 
-A complete end-to-end data analyst portfolio project built using real-world e-commerce inventory data scraped from Zepto — one of India’s fastest-growing quick-commerce startups.
+> A complete end-to-end **Data Analyst Portfolio Project** using SQL on real-world e-commerce data scraped from **Zepto** — one of India’s fastest-growing quick-commerce startups.
 
-This project simulates how actual data analysts work in fast-paced product and retail analytics environments, covering everything from raw data setup to actionable business insights using SQL.
+This project simulates how actual data analysts work in retail/product teams — from raw data setup to deriving meaningful insights using SQL.
 
-🚀 Who Is This Project For?
-📊 Aspiring Data Analysts looking to showcase hands-on SQL skills in their portfolio
+---
 
-📚 Learners aiming to strengthen SQL through real-world e-commerce scenarios
+## 🚀 **Who Is This Project For?**
 
-💼 Interview Candidates targeting roles in retail, e-commerce, or product analytics
+- 📊 **Aspiring Data Analysts** building a strong SQL portfolio  
+- 📚 **Learners** who want to practice SQL hands-on  
+- 💼 **Interview candidates** targeting roles in retail, e-commerce, or product analytics  
 
-📌 Project Objectives
-Simulate key tasks performed by data analysts in e-commerce settings:
+---
 
-✅ Set up and explore a messy real-world inventory dataset
+## 📌 **Project Objectives**
 
-✅ Conduct Exploratory Data Analysis (EDA) to analyze categories, availability, and pricing inconsistencies
+Simulate core responsibilities of e-commerce data analysts:
 
-✅ Perform Data Cleaning (handle nulls, remove invalid entries, normalize pricing)
+- ✅ **Set up a real-world inventory database**
+- ✅ **Perform Exploratory Data Analysis (EDA)**
+- ✅ **Clean & transform raw product data**
+- ✅ **Write SQL queries to generate business insights**
 
-✅ Write Business-Driven SQL Queries to extract insights around pricing, revenue, inventory, and stock health
+---
 
-📁 Dataset Overview
-The dataset is scraped from Zepto's product listings and mimics a typical inventory system with real-world complexity.
+## 📁 **Dataset Overview**
 
-Each row represents a unique SKU (Stock Keeping Unit). Duplicate product names appear with varying sizes, weights, discounts, or categories — just like real catalog data.
+The dataset is sourced from Zepto’s product listings and mirrors a real e-commerce catalog with:
 
-🔑 Key Columns:
-Column	Description
-sku_id	Unique product identifier (synthetic primary key)
-name	Product name as listed
-category	Category (e.g., Fruits, Snacks, Beverages)
-mrp	Maximum Retail Price (in ₹, converted from paise)
-discountPercent	Discount applied on MRP
-discountedSellingPrice	Final price after discount (in ₹)
-availableQuantity	Available inventory
-weightInGms	Product weight in grams
-outOfStock	Boolean flag for stock status
-quantity	Units per package or loose quantity
+- Multiple SKUs per product (due to variations in size, weight, packaging)
+- Inconsistencies in pricing and stock info, mimicking real-world messiness
 
-🔧 Project Workflow
-1. 🛠️ Database & Table Setup
-sql
-Copy
-Edit
+### 🔑 **Key Columns**
+
+| Column | Description |
+|--------|-------------|
+| `sku_id` | Unique product identifier (synthetic primary key) |
+| `name` | Product name as listed |
+| `category` | Product category (e.g., Fruits, Snacks) |
+| `mrp` | Maximum Retail Price (₹, converted from paise) |
+| `discountPercent` | Discount applied on MRP |
+| `discountedSellingPrice` | Final selling price (₹) |
+| `availableQuantity` | Units available in inventory |
+| `weightInGms` | Weight in grams |
+| `outOfStock` | Boolean flag (in stock or not) |
+| `quantity` | No. of units per package |
+
+---
+
+## 🔧 **Project Workflow**
+
+### 🛠️ **1. Database & Table Setup**
+
+```sql
 CREATE TABLE zepto (
   sku_id SERIAL PRIMARY KEY,
   category VARCHAR(120),
@@ -57,61 +66,51 @@ CREATE TABLE zepto (
   outOfStock BOOLEAN,
   quantity INTEGER
 );
-2. 📥 Data Import
-CSV imported via pgAdmin. If not, use the following:
+```
 
-sql
-Copy
-Edit
-\copy zepto(category,name,mrp,discountPercent,availableQuantity,
-  discountedSellingPrice,weightInGms,outOfStock,quantity)
-FROM 'data/zepto_v2.csv'
-WITH (FORMAT csv, HEADER true, DELIMITER ',', QUOTE '"', ENCODING 'UTF8');
-Faced UTF-8 encoding errors — resolved by saving the CSV using CSV UTF-8 format.
-
-3. 🔍 Data Exploration (EDA)
+3. __Data Exploration__
 Counted total records
 
-Previewed data sample and structure
+Previewed sample data
 
-Checked for nulls across columns
+Checked for nulls
 
-Identified distinct categories
+Identified unique product categories
 
-Analyzed in-stock vs out-of-stock products
+Compared in-stock vs out-of-stock items
 
-Detected duplicate product names with multiple SKUs
+Found duplicate product names with different SKUs
 
-4. 🧹 Data Cleaning
-Removed rows where mrp or discountedSellingPrice was zero
+🧹 4. __Data Cleaning__
+Removed entries with mrp or discountedSellingPrice = 0
 
-Converted prices from paise to rupees for clarity
+Converted pricing columns from paise to rupees
 
-5. 📊 Business Insights via SQL
-Top 10 best-value products based on discount percentage
+📊 5. Business Insights (SQL Queries)
+🔟 Top 10 best-value products based on discount percent
 
-High-MRP items that are currently out of stock
+🚫 Out-of-stock high-MRP products
 
-Estimated potential revenue per category
+💰 Estimated potential revenue per category
 
-Flagged expensive items (MRP > ₹500) with low discounts
+❌ Flagged expensive items (MRP > ₹500) with low discounts
 
-Ranked top 5 categories by average discount offered
+🏆 Top 5 categories with highest average discounts
 
-Calculated price per gram for value-for-money insights
+⚖️ Price per gram to find value-for-money products
 
-Categorized products by weight range: Low, Medium, Bulk
+📦 Grouped by weight: Low, Medium, Bulk
 
-Measured total inventory weight by category
+⚖️ Total inventory weight by category
 
-🧠 Key Skills Demonstrated
-SQL (CTEs, Aggregations, Filtering, CASE statements)
+🧠 __Skills Demonstrated__
+SQL (Filtering, Joins, Aggregation, CTEs, Window functions)
+
+EDA (Data exploration and business thinking)
 
 Data Cleaning and Transformation
 
-Exploratory Data Analysis (EDA)
+Business Logic Development
 
-Business-Oriented Query Writing
-
-Inventory and Pricing Analysis
+Retail/Product Domain Understanding
 
